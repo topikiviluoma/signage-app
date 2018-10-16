@@ -73,8 +73,6 @@ class App extends Component {
         {this.newItemForm()}
         <h3>Items in playlist:</h3>
         <Playlist list={this.state.content} handleDelete={this.deleteItem} />
-
-
       </div>
     );
   }
