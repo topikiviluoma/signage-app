@@ -12,6 +12,10 @@ class Player extends Component {
         this.interval = setInterval(() => this.nextSlide(), 7000);
     }
 
+    componentWillUnmount() {
+        clearInterval(this.interval);
+      }
+
     nextSlide = () => {
         if (this.state.currentIndex === this.props.images.length - 1) {
             return this.setState({

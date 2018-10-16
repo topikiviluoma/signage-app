@@ -7,14 +7,4 @@ const getAll = async () => {
 }
 
 
-const create = async (newSlide) => {
-    const response = await axios.post(baseUrl, newSlide)
-    return response.data
-}
-
-const remove = async (id) => {
-    const response = await axios.delete(baseUrl + '/' + id)
-    return response.data
-}
-
-export default { getAll, create, remove}
+export default { getAll }

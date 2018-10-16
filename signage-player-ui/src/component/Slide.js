@@ -8,12 +8,13 @@ const Slide = ({ image, changer }) => {
         return (
             <video width="320" height="240" autoPlay>
                 <source src={image} type="video/mp4" />
+                Your browser does not support the video tag.
             </video>
         )
     }
     else {
         return (
-            <img onClick={changer} src={image} height="480" width="640" ></img>
+            <img onClick={changer} src={image} height="480" width="640" alt="alt" ></img>
         )
     }
 }

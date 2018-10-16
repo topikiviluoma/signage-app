@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Management from './component/Management';
 import slideService from './service/slide'
 import Playlist from './component/Playlist';
 
@@ -8,31 +7,25 @@ class App extends Component {
     super(props)
     this.state = {
       content: null,
-      visible: false,
       newItem: '',
       message: ''
     }
   }
 
-  handleCose = () => {
-    this.setState({ visible: false })
-  }
-
-  handleOpenSelection = () => {
-    this.setState({ visible: true })
-  }
-
   newItemHandler = async (event) => {
+    event.preventDefault()
     await slideService.create({
       url: this.state.newItem
     })
     this.setState({
       newItem: ''
     })
+    window.location.reload()
   }
 
   deleteItem = async (item) => {
     console.log('item to delete', item)
+
     if (window.confirm('Are you sure?')) {
       await slideService.remove(item.id)
       this.setState({
@@ -77,7 +70,6 @@ class App extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleOpenSelection}>Manage</button>
         {this.newItemForm()}
         <p>Items in playlist:</p>
         <Playlist list={this.state.content} handleDelete={this.deleteItem} />
