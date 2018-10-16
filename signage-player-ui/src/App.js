@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import slideService from './service/slide'
 import Player from './component/Player'
+import _ from 'lodash'
 
 
 class App extends Component {
@@ -13,7 +14,9 @@ class App extends Component {
 
   checkForUpdates = async () => {
     const slides = await slideService.getAll()
-    if (slides && slides.length !== this.state.content.length) {
+    let newList = slides
+    let oldList = this.state.content
+    if (!_.isEqual(newList.sort(), oldList.sort())) {
       this.setState({
         content: slides
       })
