@@ -25,6 +25,7 @@ class App extends Component {
 
   componentDidMount = async () => {
     const slides = await slideService.getAll()
+    console.log('slides', slides)
     this.setState({
       content: slides
     })
@@ -40,7 +41,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        {this.state.content === null ? <p>No Slides</p> :
+        {this.state.content === null || this.state.content.length === 0 ?
+          <p>No Slides</p> :
           <Player images={this.state.content} />
         }
       </div>
